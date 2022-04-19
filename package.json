@@ -1,5 +1,44 @@
 {
+  "author": "André Santos",
+  "description": "Challenge Pitang backend",
+  "main": "index.js",
+  "license": "ISC",
+  "name": "challenge-pitang---backend",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/stlandre/ChallengePitang-Backend/issues"
+  },
+  "homepage": "https://github.com/stlandre/ChallengePitang-Backend#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stlandre/ChallengePitang-Backend.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./packages/src/index.js",
+    "start": "node ./packages/src/index.js"
+  },
   "dependencies": {
-    "express": "^4.17.3"
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "helmet": "^5.0.2",
+    "joi": "^17.6.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "nodemon": "^2.0.15"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/**"
+    ]
   }
 }
