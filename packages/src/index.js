@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
-import { LocalStorage } from 'node-localstorage'
+import Storage from '../storage/Storage.js'
 
 dotenv.config()
 
@@ -24,12 +24,20 @@ app.use(morgan('dev'))
 //   console.log(`Server is running on PORT ${PORT}`)
 // })
 
-const localStorage = new LocalStorage('./scratch')
+const storage = new Storage()
 
-localStorage.setItem('myFirstKey', 'myFirstValue')
-localStorage.setItem('mySecondKey', 'mySecondValue')
-// localStorage.removeItem('myFirstKey')
-// localStorage.removeItem('mySecondKey')
-localStorage.clear()
-console.log(localStorage.length)
-console.log(localStorage.getItem('mySecondKey'))
+const schedule = { name: 'Andre', dateTime: new Date(2022, 3, 19, 0, 0, 0, 5), finished: true }
+const schedule2 = { name: 'Bruna', dateTime: new Date(2022, 3, 19, 0, 0, 0, 1), finished: true }
+// console.log(schedule.date.toDateString())
+// console.log(schedule.date.toTimeString())
+// console.log(schedule)
+
+storage.setSchedule(schedule)
+storage.setSchedule(schedule2)
+// console.log(storage.localStorage.array)
+// console.log(JSON.parse(storage.localStorage.getItem('1')))
+// console.log(new Date(JSON.parse(storage.localStorage.getItem('1')).date))
+console.log(storage.getSchedulesDay(new Date(2022, 3, 19, 0, 0, 0, 0)))
+
+storage.removeAll()
+console.log(storage.getSchedulesDay(new Date()).length)
