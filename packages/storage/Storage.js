@@ -14,11 +14,11 @@ class Storage {
   }
 
   setSchedule (schedule) {
+    this.localStorage.setItem('0', `${this.idGenerate + 1}`)
     schedule.id = this.idGenerate // obviously this idGenerate is illustrative
     const scheduleString = JSON.stringify(schedule)
     this.localStorage.setItem(`${this.idGenerate}`, scheduleString)
     this.idGenerate++
-    this.localStorage.setItem('0', `${this.idGenerate}`)
 
     return this.localStorage.getItem(`${this.idGenerate - 1}`)
   }
