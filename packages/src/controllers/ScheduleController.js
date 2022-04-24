@@ -47,12 +47,14 @@ class ScheduleController {
       return response.status(400).send({ message: 'Invalid date' })
     } else {
       const dateT = new Date(dateTime)
-      const schedulesOnDay = this.storage.getSchedulesDay(dateT).length
+      const dateUrl = `${dateT.toLocaleDateString().split('/')[2]}-${dateT.toLocaleDateString().split('/')[1]}-${dateT.toLocaleDateString().split('/')[0]}`
+      const schedulesOnDay = this.storage.getSchedulesDay(dateUrl).length
+
       if (schedulesOnDay >= vacancesPerDay) {
         return response.status(404).send({ message: 'Not found vacancy for this day' })
       }
 
-      const schedulesOnDayHour = this.storage.getSchedulesDayHour(dateT, dateT.getUTCHours()).length
+      const schedulesOnDayHour = this.storage.getSchedulesDayHour(dateUrl, dateT.getUTCHours()).length
       if (schedulesOnDayHour >= schedulesPerHour) {
         return response.status(404).send({ message: 'Not found vacancy for this time' })
       }
