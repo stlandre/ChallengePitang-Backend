@@ -30,8 +30,13 @@ class Storage {
     for (let i = 1; i < this.localStorage.length; i++) {
       const key = this.localStorage.key(i)
       const dateUTC = new Date(JSON.parse(this.localStorage.getItem(key)).dateTime)
+      const dayLocale = dateUTC.toLocaleDateString().split('/')[0]
+      const monthLocale = dateUTC.toLocaleDateString().split('/')[1] - 1
+      const yearLocale = dateUTC.toLocaleDateString().split('/')[2]
 
-      if (dateD.getUTCDate() === dateUTC.getUTCDate() && dateD.getUTCMonth() === dateUTC.getUTCMonth() && dateD.getUTCFullYear() === dateUTC.getUTCFullYear()) { // dayString === dayS) {
+      // if (dateD.getUTCDate() === dateUTC.getUTCDate() && dateD.getUTCMonth() === dateUTC.getUTCMonth() && dateD.getUTCFullYear() === dateUTC.getUTCFullYear()) { // dayString === dayS) {
+      // eslint-disable-next-line eqeqeq
+      if (dateD.getUTCDate() == dayLocale && dateD.getUTCMonth() == monthLocale && dateD.getUTCFullYear() == yearLocale) { // dayString === dayS) {
         const scheduleStringJson = JSON.parse(this.localStorage.getItem(key))
         const scheduleJson = {
           id: scheduleStringJson.id,
